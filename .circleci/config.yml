@@ -88,9 +88,6 @@ jobs:
       - checkout
       - restore_cache:
           key: jars-{{ checksum "build.gradle.kts" }}-{{ checksum  "app/build.gradle.kts" }}
-      - run:
-          name: yarn package
-          command: yarn install
       # - run:
       #     name: Change working directory
       #     command: cd android
