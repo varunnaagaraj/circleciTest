@@ -85,7 +85,7 @@ jobs:
 
     #   - store_artifacts:
     #       path: test-results
-    working_directory: ~/circleCITest/
+    working_directory: ~/circleCITest/android
     docker:
       - image: circleci/android:api-25-alpha
     environment:
