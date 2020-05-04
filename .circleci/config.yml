@@ -79,7 +79,7 @@ jobs:
 
     #   - store_artifacts:
     #       path: test-results
-    working_directory: ~/circleCITest/android
+    working_directory: ~/circleCITest/android/app
     docker:
       - image: circleci/android:api-25-alpha
     environment:
@@ -88,27 +88,27 @@ jobs:
       - checkout
       - restore_cache:
           key: jars-{{ checksum "build.gradle.kts" }}-{{ checksum  "app/build.gradle.kts" }}
-      - run:
-          name: Change working directory
-          command: cd android
-      - run:
-          name: present working directory
-          command: pwd
-      - run:
-          name: list working directory
-          command: ls -l
-      - run:
-          name: Change working directory
-          command: cd android
-      - run:
-          name: present working directory
-          command: pwd
-      - run:
-          name: list working directory
-          command: ls -l
       # - run:
-      #     name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
-      #     command: sudo chmod +x ./gradlew
+      #     name: Change working directory
+      #     command: cd android
+      # - run:
+      #     name: present working directory
+      #     command: pwd
+      # - run:
+      #     name: list working directory
+      #     command: ls -l
+      # - run:
+      #     name: Change working directory
+      #     command: cd android
+      - run:
+          name: present working directory
+          command: pwd
+      - run:
+          name: list working directory
+          command: ls -l
+      - run:
+          name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
+          command: sudo chmod +x ./gradlew
       - run:
           name: Build apk
           command: ./gradlew build
