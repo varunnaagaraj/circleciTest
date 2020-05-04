@@ -7,11 +7,11 @@ jobs:
     steps:
       - checkout
 
-      - restore_cache:
-          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+      # - restore_cache:
+      #     key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
 
-      - restore_cache:
-          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+      # - restore_cache:
+      #     key: node-v1-{{ checksum "package.json" }}-{{ arch }}
 
       - run: yarn install
 
@@ -21,15 +21,15 @@ jobs:
 
       - run: yarn add @react-native-community/cli
 
-      - save_cache:
-          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
-          paths:
-            - ~/.cache/yarn
+      # - save_cache:
+      #     key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+      #     paths:
+      #       - ~/.cache/yarn
 
-      - save_cache:
-          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
-          paths:
-            - node_modules
+      # - save_cache:
+      #     key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+      #     paths:
+      #       - node_modules
 
       - run:
           name: jest tests
@@ -118,6 +118,11 @@ jobs:
       - run:
           name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
           command: cd android && sudo chmod +x ./gradlew && cd ..
+
+      - run:
+          name: Build clean
+          command: cd android && ./gradlew cleanBuildCache && cd ..
+
       - run:
           name: Build apk
           command: cd android && ./gradlew build && cd ..
