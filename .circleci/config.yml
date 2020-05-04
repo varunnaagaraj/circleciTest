@@ -97,8 +97,8 @@ jobs:
           name: Build apk
           command: ./android/gradlew build
       - save_cache:
-          paths:
-            - ~/.gradle
+          # paths:
+          #   - ~/.gradle
           key: jars-{{ checksum "build.gradle.kts" }}-{{ checksum  "app/build.gradle.kts" }}
       # - run:
       #     name: Run Tests
