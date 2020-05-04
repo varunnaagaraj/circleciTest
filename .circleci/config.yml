@@ -106,6 +106,9 @@ jobs:
       - run:
           name: list working directory
           command: cd android && ls -l && cd ..
+      - run:
+          name: yarn package
+          command: yarn install
       # - run:
       #     name: list working directory
       #     command: cd ./app && ls -l
