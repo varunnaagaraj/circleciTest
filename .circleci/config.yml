@@ -79,7 +79,7 @@ jobs:
 
     #   - store_artifacts:
     #       path: test-results
-    working_directory: ~/circleCITest/android/app
+    working_directory: ~/circleCITest/android
     docker:
       - image: circleci/android:api-25-alpha
     environment:
@@ -108,16 +108,16 @@ jobs:
           command: ls -l
       - run:
           name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
-          command: sudo chmod +x ./gradlew
+          command: cd android/app && sudo chmod +x ./gradlew
       - run:
           name: Build apk
-          command: ./gradlew build
+          command: cd android/app && ./gradlew build
       - save_cache:
           paths:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle.kts" }}-{{ checksum  "app/build.gradle.kts" }}
       - store_artifacts:
-          path: app/build/outputs/apk/
+          path: android/app/build/outputs/apk/
           destination: apks/
       # - run:
       #     name: Compress app for storage
