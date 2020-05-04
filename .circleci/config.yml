@@ -105,19 +105,22 @@ jobs:
           command: pwd
       - run:
           name: list working directory
-          command: ls -l
+          command: cd android/app && ls -l
+      - run:
+          name: list working directory
+          command: cd ./app && ls -l
       - run:
           name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
-          command: cd android/app && sudo chmod +x ./gradlew
+          command: cd ./app && sudo chmod +x ./gradlew
       - run:
           name: Build apk
-          command: cd android/app && ./gradlew build
+          command: cd ./app && ./gradlew build
       - save_cache:
           paths:
-            - ~/.gradle
+            - ./.gradle
           key: jars-{{ checksum "build.gradle.kts" }}-{{ checksum  "app/build.gradle.kts" }}
       - store_artifacts:
-          path: android/app/build/outputs/apk/
+          path: ./app/build/outputs/apk/
           destination: apks/
       # - run:
       #     name: Compress app for storage
