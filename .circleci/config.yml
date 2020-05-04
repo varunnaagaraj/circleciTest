@@ -52,6 +52,9 @@ jobs:
       - checkout:
           path: ~/circleCITest
 
+      - run:
+        command: ls /home/circleci/circleCITest/android
+
       - attach_workspace:
           at: ~/circleCITest
 
@@ -80,7 +83,7 @@ jobs:
   ios:
     macos:
       xcode: "9.0"
-    working_directory: ~/demo-react-native
+    working_directory: ~/circleCITest
 
     # use a --login shell so our "set Ruby version" command gets picked up for later steps
     shell: /bin/bash --login -o pipefail
