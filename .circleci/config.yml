@@ -105,16 +105,16 @@ jobs:
           command: pwd
       - run:
           name: list working directory
-          command: cd android/app && ls -l
-      - run:
-          name: list working directory
-          command: cd ./app && ls -l
+          command: cd android && ls -l && cd ..
+      # - run:
+      #     name: list working directory
+      #     command: cd ./app && ls -l
       - run:
           name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
-          command: cd ./app && sudo chmod +x ./gradlew
+          command: cd android && sudo chmod +x ./gradlew && cd ..
       - run:
           name: Build apk
-          command: cd ./app && ./gradlew build
+          command: cd android && ./gradlew build && cd ..
       - save_cache:
           paths:
             - ./.gradle
