@@ -53,7 +53,7 @@ jobs:
   android:
     working_directory: ~/circleCITest/android
     docker:
-      - image: circleci/android:api-28
+      - image: circleci/android:api-27-node8-alpha
     steps:
       - checkout:
           path: ~/circleCITest
@@ -74,8 +74,8 @@ jobs:
       - run:
           name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
           command: sudo chmod +x ./gradlew
-      # - run: yes | sdkmanager --licenses
-      # - run: yes | sdkmanager --update || exit 0
+      - run: yes | sdkmanager --licenses
+      - run: yes | sdkmanager --update || exit 0
       - run:
           name: Build clean
           command: ./gradlew cleanBuildCache
