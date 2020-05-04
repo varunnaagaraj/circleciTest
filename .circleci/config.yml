@@ -105,7 +105,7 @@ jobs:
           command: pwd
       - run:
           name: list working directory
-          command: cd android/android && ls -l && cd ..
+          command: cd android && ls -l && cd ..
       # - run:
       #     name: list working directory
       #     command: cd ./app && ls -l
