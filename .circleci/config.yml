@@ -100,9 +100,13 @@ jobs:
           key: jars-{{ checksum "build.gradle.kts" }}-{{ checksum  "app/build.gradle.kts" }}
       - run:
           command: ls ./android/app/
+      - run:
           command: ls ./android/app/build/
+      - run:
           command: ls ./android/app/build/outputs/
+      - run:
           command: ls ./android/app/build/outputs/apk/
+      - run:
           command: ls ./android/app/build/outputs/apk/debug
       - run:
           name: Compress app for storage
