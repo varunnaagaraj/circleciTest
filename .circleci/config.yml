@@ -53,7 +53,7 @@ jobs:
           path: ~/circleCITest
 
       - run:
-        command: ls /home/circleci/circleCITest/android
+          command: ls /home/circleci/circleCITest/android
 
       - attach_workspace:
           at: ~/circleCITest
