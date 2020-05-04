@@ -79,7 +79,7 @@ jobs:
 
     #   - store_artifacts:
     #       path: test-results
-    working_directory: ~/circleCITest/android
+    working_directory: ~/circleCITest/
     docker:
       - image: circleci/android:api-25-alpha
     environment:
@@ -88,6 +88,9 @@ jobs:
       - checkout
       - restore_cache:
           key: jars-{{ checksum "build.gradle.kts" }}-{{ checksum  "app/build.gradle.kts" }}
+      - run:
+          name: yarn package
+          command: yarn install
       # - run:
       #     name: Change working directory
       #     command: cd android
@@ -105,10 +108,7 @@ jobs:
           command: pwd
       - run:
           name: list working directory
-          command: cd android && ls -l && cd ..
-      - run:
-          name: yarn package
-          command: yarn install
+          command: cd android/android && ls -l && cd ..
       # - run:
       #     name: list working directory
       #     command: cd ./app && ls -l
