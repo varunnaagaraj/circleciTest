@@ -97,6 +97,15 @@ jobs:
       - run:
           name: list working directory
           command: ls -l
+      - run:
+          name: Change working directory
+          command: cd android
+      - run:
+          name: present working directory
+          command: pwd
+      - run:
+          name: list working directory
+          command: ls -l
       # - run:
       #     name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
       #     command: sudo chmod +x ./gradlew
