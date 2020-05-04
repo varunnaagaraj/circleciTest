@@ -94,26 +94,20 @@ jobs:
       - run:
           command: ls -l
       - run:
-          name: Clean Gradle
-          command: ./android/gradlew clean
-      - run:
-          name: List tasks
-          command: ./android/gradlew tasks
-      - run:
-          name: Download Dependencies
+          name: Build apk
           command: ./android/gradlew build
       - save_cache:
           paths:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-      - run:
-          name: Run Tests
-          command: ./android/gradlew lint test
-      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/ 
-          path: app/build/reports
-          destination: reports
-      - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: app/build/test-results
+      # - run:
+      #     name: Run Tests
+      #     command: ./android/gradlew lint test
+      # - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/ 
+      #     path: app/build/reports
+      #     destination: reports
+      # - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+      #     path: app/build/test-results
 
   ios:
     macos:
